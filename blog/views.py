@@ -23,7 +23,7 @@ class TagDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         paginator = Paginator(self.object.posts.all(), POSTS_PER_PAGE)
 
-        context = super(TagDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         pager = paginator.page(self.request.GET.get("page", 1))
         context["post_list"] = pager
         context["page_obj"] = pager
@@ -37,7 +37,7 @@ class PostDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         paginator = Paginator(self.object.approved_comments().all(), COMMENTS_PER_PAGE)
 
-        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         pager = paginator.page(self.request.GET.get("page", 1))
         context["comments"] = pager
         context["page_obj"] = pager

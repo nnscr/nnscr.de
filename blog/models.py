@@ -29,7 +29,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def url(self):
         return reverse("blog:detail", kwargs={

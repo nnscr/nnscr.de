@@ -7,10 +7,10 @@ class AdminSite(admin.AdminSite):
     def __init__(self, name="admin"):
         self.__contexts = {"index": {}}
         self.extra_urls = []
-        super(AdminSite, self).__init__(name)
+        super().__init__(name)
 
     def get_urls(self):
-        urls = super(AdminSite, self).get_urls()
+        urls = super().get_urls()
         urls += self.extra_urls
         return urls
 
@@ -18,7 +18,7 @@ class AdminSite(admin.AdminSite):
         context = {}
         context.update(self.__contexts["index"])
         context.update(extra_context or {})
-        return super(AdminSite, self).index(request, context)
+        return super().index(request, context)
 
     def add_context(self, page, key, value):
         self.__contexts[page][key] = value

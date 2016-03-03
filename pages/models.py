@@ -13,7 +13,7 @@ class Page(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Page, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def url(self):
         return reverse("pages:page", kwargs={"slug": self.slug})
