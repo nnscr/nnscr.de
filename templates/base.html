@@ -18,7 +18,8 @@
                 {% block main %}{% endblock %}
             </div>
             <div id="page-sidebar">
-                {% load sidebar %}
+                {% load sidebar_pages %}
+                {% load sidebar_tags %}
                 {% sidebar_pages %}
                 {% sidebar_tags %}
             </div>

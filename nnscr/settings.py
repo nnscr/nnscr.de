@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'blog.apps.BlogConfig',
     'pages.apps.PagesConfig',
+    'nnmarkdown.apps.NnmarkdownConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,7 +61,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
-            'builtins': ['blog.templating'],
+            'builtins': [],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

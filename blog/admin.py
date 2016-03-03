@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.conf.urls import url
 from django import forms
-from . import models
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
-from nnscr.markdown import MarkdownWidget
+
+from . import models
+from nnmarkdown.form import MarkdownWidget
 from nnscr.admin import site
 
 

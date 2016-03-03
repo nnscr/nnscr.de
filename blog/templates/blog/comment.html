@@ -4,6 +4,7 @@
         <span class="time"><i class="fa fa-clock-o"></i> {{ comment.date|date:"Y-m-d H:i:s" }}</span>
     </div>
     <div class="text">
+        {% load markdown %}
         {{ comment.text | markdown }}
     </div>
 </article>
