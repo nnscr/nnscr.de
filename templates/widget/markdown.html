@@ -1,0 +1,63 @@
+<textarea class="markdown-editor" {{ attrs }}>{{ value }}</textarea>
+
+<script type="text/javascript">
+    function handle_keypress(ev) {
+        var sel_start = this.selectionStart;
+        var sel_end = this.selectionEnd;
+        var sel_len = sel_end - sel_start;
+
+        if (ev.keyCode == 8) { // backspace
+            if (sel_len == 0) {
+                if (sel_start >= 4) {
+                    // get the position of the last break before the selection
+                    var previous_break_pos = this.value.substr(0, sel_start).lastIndexOf("\n");
+
+                    // treat string start as line break
+                    if (previous_break_pos == -1) {
+                        previous_break_pos = 0;
+                    }
+
+                    // get the part from the line beginning to the cursor
+                    var beginning = this.value.substring(previous_break_pos+1, sel_start);
+
+                    if (beginning.match(/^(    )+$/)) {
+                        // line beginning is an even number of spaces, remove a tab width
+                        this.value = this.value.substr(0, sel_start - 4) + this.value.substr(sel_start);
+                        ev.preventDefault();
+                    }
+                }
+            }
+        } else if (ev.keyCode == 9) { // tab
+            ev.preventDefault();
+
+            if (sel_len == 0) {
+                this.value = this.value.substr(0, sel_start) + "    " + this.value.substr(sel_end);
+
+                // move cursor by the width of the new inserted tab
+                this.selectionStart = sel_start + 4;
+                this.selectionEnd = sel_end + 4;
+            } else {
+                // get the position of the last break before the selection
+                var previous_break_pos = this.value.substr(0, sel_start).lastIndexOf("\n");
+                // get the whole selection from the first tab to the selection end
+                var selection = this.value.substring(previous_break_pos, sel_end);
+                // indent the code
+                var indented = selection.replace(/^/mg, "    ");
+                // write back to input
+                this.value = this.value.substr(0, previous_break_pos) + indented + this.value.substr(sel_end);
+            }
+        }
+    }
+
+    var elements = document.getElementsByClassName("markdown-editor");
+
+    for (element in elements) {
+        if (!elements.hasOwnProperty(element)) {
+            continue;
+        }
+
+        var editor = elements[element];
+
+        editor.addEventListener("keydown", handle_keypress);
+    }
+</script>

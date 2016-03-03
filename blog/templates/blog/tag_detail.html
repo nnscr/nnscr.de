@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h1>Posts tagged {{ tag }}</h1>
+    {% include "blog/post_list_standalone.html" %}
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nnscr.de</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'dist/css/main.css' %}">
+</head>
+<body>
+<div class="container" id="page">
+    <header id="page-header">
+        <h1><a href="{% url "blog:list" %}" rel="index">nnscr</a></h1>
+        <small>Linux, Programming, Electronics and more</small>
+    </header>
+    <div class="row" id="page-main-row">
+        <div id="page-main-inner-row">
+            <div id="page-main">
+                {% block main %}{% endblock %}
+            </div>
+            <div id="page-sidebar">
+                {% load sidebar %}
+                {% sidebar_pages %}
+                {% sidebar_tags %}
+            </div>
+        </div>
+    </div>
+    <footer id="page-footer">
+        <a class="footer-item github" href="https://github.com/nnscr">
+            <i class="fa fa-github"></i> Github
+        </a>
+        <a class="footer-item license" href="{% url "blog:licensing" %}">
+            <i class="fa fa-creative-commons"></i> All contents licensed CC BY
+        </a>
+        <a class="footer-item contact" href="{% url "blog:contact" %}">
+            <i class="fa fa-info-circle"></i> Contact
+        </a>
+    </footer>
+</div>
+</body>
+</html>

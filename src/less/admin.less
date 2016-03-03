@@ -1,0 +1,52 @@
+#header {
+  background-color: #222;
+}
+
+#content-related {
+  background-color: #444;
+
+  .module h2 {
+    color: #fff;
+  }
+}
+
+.module {
+  background-color: #222;
+
+  label.required {
+    color: #fff;
+  }
+
+  label {
+    color: #ccc;
+  }
+
+  caption,
+  h2 {
+    background-color: #444;
+    text-transform: uppercase;
+  }
+
+  table td,
+  table th {
+    border-bottom: none;
+    padding: 4px;
+  }
+
+  &.with-padding {
+    padding: @padding-base-vertical @padding-base-horizontal;
+  }
+}
+
+input, select, textarea {
+  color: #333;
+}
+
+.dashboard #content {
+  width: auto;
+}
+
+//.btn-default { color: @btn-default-color; }
+//.btn-warning { color: @btn-warning-color; }
+//.btn-danger { color: @btn-danger-color; }
+//.btn-success { color: @btn-success-color; }

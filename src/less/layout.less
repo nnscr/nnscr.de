@@ -1,0 +1,62 @@
+/**
+  Page layout
+*/
+#page {
+  margin-top: @padding-base-vertical * 2;
+  margin-bottom: @padding-base-vertical * 2;
+  padding: 0;
+  box-shadow: 0 0 15px rgba(30, 30, 30, 200);
+
+  #page-header {
+    background-color: #555555;
+    padding: 30px 50px;
+
+    h1 {
+      color: #eee;
+
+      small {
+        color: #ccc;
+      }
+    }
+  }
+
+  #page-main-row {
+    display: table;
+    width: 100%;
+    margin: 0;
+
+    #page-main-inner-row {
+      display: table-row;
+
+      #page-main {
+        background-color: #ccc;
+        color: #333;
+        display: table-cell;
+        width: percentage((8 / @grid-columns));
+        padding: @padding-base-vertical*2 @padding-base-horizontal*2;
+
+        h1 {
+          margin: 0 0 5px 0;
+        }
+      }
+
+      #page-sidebar {
+        width: percentage((3 / @grid-columns));
+        display: table-cell;
+        vertical-align: top;
+        padding: @padding-base-vertical @padding-base-horizontal;
+        background-color: #444;
+      }
+    }
+  }
+
+  #page-footer {
+    background-color: #555;
+    padding: @padding-base-vertical @padding-base-horizontal;
+    text-align: right;
+
+    .footer-item {
+      padding: @padding-base-vertical @padding-base-horizontal;
+    }
+  }
+}

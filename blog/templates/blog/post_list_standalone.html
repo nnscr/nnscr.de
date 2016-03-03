@@ -1,0 +1,7 @@
+<div class="post-list">
+    {% for post in post_list %}
+        {% include "blog/post.html" %}
+    {% endfor %}
+</div>
+
+{% include "pagination.html" %}

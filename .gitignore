@@ -1,0 +1,6 @@
+/.idea
+/node_modules
+/static
+/nnscr/static
+/db.sqlite3
+__pycache__

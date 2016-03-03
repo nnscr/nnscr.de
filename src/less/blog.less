@@ -1,0 +1,49 @@
+/**
+ Blog posts
+*/
+.post-list {
+  article + article {
+    border-top: 1px dotted #444;
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+}
+
+/**
+ Blog comments
+*/
+.comments {
+  margin-top: 15px;
+  border-top: 1px dotted #444;
+}
+
+.comment {
+  display: table;
+  width: 100%;
+  margin-bottom: @padding-base-vertical;
+
+  .author,
+  .text {
+    display: table-cell;
+    vertical-align: top;
+    padding: @padding-base-vertical @padding-base-horizontal;
+  }
+
+  .author {
+    width: percentage((3 / @grid-columns));
+    background-color: #444;
+    color: #fff;
+  }
+
+  .time {
+    display: block;
+    font-size: 0.9em;
+    color: #aaa;
+  }
+
+  .text {
+    width: percentage((8 / @grid-columns));
+    background-color: #333;
+    color: #ccc;
+  }
+}

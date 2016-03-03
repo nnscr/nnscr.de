@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block main %}
+    {% include "blog/post.html" with single=True %}
+    {% include "blog/comments.html" %}
+{% endblock %}

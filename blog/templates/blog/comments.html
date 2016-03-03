@@ -1,0 +1,26 @@
+<section class="comments">
+    <h1>Comments</h1>
+
+    <form method="post" action="{% url "blog:comment_post" %}">
+        <input type="hidden" name="post_id" value="{{ post.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="comment_author_name">Name</label>
+            <input type="text" id="comment_author_name" name="author_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="comment_text">Text</label>
+            {% include "widget/markdown.html" with attrs='name="text" id="comment_text" class="form-control" rows="10"' %}
+        </div>
+        <div class="form-group">
+            <p>All comments are moderated, please don't post nonsense.</p>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+    </form>
+
+    {% for comment in comments %}
+        {% include "blog/comment.html" %}
+    {% endfor %}
+
+    {% include "pagination.html" %}
+</section>
