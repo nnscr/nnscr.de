@@ -6,6 +6,10 @@
         var sel_end = this.selectionEnd;
         var sel_len = sel_end - sel_start;
 
+        if (ev.ctrlKey) {
+            return;
+        }
+
         if (ev.keyCode == 8) { // backspace
             if (sel_len == 0) {
                 if (sel_start >= 4) {
