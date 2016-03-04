@@ -8,6 +8,6 @@ register = template.Library()
 
 @register.filter("markdown", is_safe=True)
 def filter_markdown(inp):
-    return mark_safe(markdown.markdown(inp, extensions=["gfm"]))
+    return mark_safe(markdown.markdown(inp, extensions=["fenced_code", "codehilite(linenums=yes)", "gfm"]))
 
 

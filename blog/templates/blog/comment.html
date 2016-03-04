@@ -1,7 +1,7 @@
 <article class="comment">
     <div class="author" rel="author">
         <span class="user"><i class="fa fa-user"></i> {{ comment.author_name }}</span>
-        <span class="time"><i class="fa fa-clock-o"></i> {{ comment.date|date:"Y-m-d H:i:s" }}</span>
+        <span class="time"><i class="fa fa-clock-o"></i> {{ comment.date|date:"Y-m-d H:i:s" }} UTC</span>
     </div>
     <div class="text">
         {% load markdown %}
