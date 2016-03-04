@@ -23,11 +23,11 @@ var less_entry = "src/less/main.less";
 var path_dist_app = "nnscr/static/dist/app";
 var path_dist_css = "nnscr/static/dist/css";
 
-gulp.task('clean', (cb) => {
+gulp.task('clean', function(cb) {
     del("nnscr/static/dist", cb);
 });
 
-gulp.task('es6', () => {
+gulp.task('es6', function() {
 /*    return gulp.src(path_js)
         .pipe(babel({
             stage: 1,
@@ -39,7 +39,7 @@ gulp.task('es6', () => {
         .pipe(connect.reload());*/
 });
 
-gulp.task('less', () => {
+gulp.task('less', function() {
  //   exec("yes yes | ./manage.py collectstatic -cl");
     return gulp.src(less_entry)
         .pipe(less())
@@ -47,7 +47,7 @@ gulp.task('less', () => {
  //       .pipe(connect.reload());
 });
 
-gulp.task('watch', () => {
+gulp.task('watch', function() {
 //    gulp.watch(path_js, ['es6']);
 //    gulp.watch(path_html, ['html']);
     gulp.watch([path_less], ['less']);
