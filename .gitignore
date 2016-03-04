@@ -1,6 +1,7 @@
 /.idea
 /node_modules
 /static
-/nnscr/static
+/nnscr/static/dist
+/nnscr/static/jspm_packages
 /db.sqlite3
 __pycache__
