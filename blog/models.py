@@ -35,7 +35,8 @@ class Post(models.Model):
         return reverse("blog:detail", kwargs={
             "slug": self.slug,
             "year": str(self.date.year),
-            "month": str(self.date.month).zfill(2)
+            "month": str(self.date.month).zfill(2),
+            "pk": str(self.id)
         })
 
     def approved_comments(self):

@@ -2,33 +2,33 @@
 
 <script type="text/javascript">
     function handle_keypress(ev) {
-        var sel_start = this.selectionStart;
-        var sel_end = this.selectionEnd;
-        var sel_len = sel_end - sel_start;
-
         if (ev.ctrlKey) {
             return;
         }
 
+        var sel_start = this.selectionStart;
+        var sel_end = this.selectionEnd;
+        var sel_len = sel_end - sel_start;
+
         if (ev.keyCode == 8) { // backspace
-            if (sel_len == 0) {
-                if (sel_start >= 4) {
-                    // get the position of the last break before the selection
-                    var previous_break_pos = this.value.substr(0, sel_start).lastIndexOf("\n");
+            if (sel_start >= 4) {
+                // get the position of the last break before the selection
+                var previous_break_pos = this.value.substr(0, sel_start).lastIndexOf("\n");
 
-                    // treat string start as line break
-                    if (previous_break_pos == -1) {
-                        previous_break_pos = 0;
-                    }
+                // treat string start as line break
+                if (previous_break_pos == -1) {
+                    previous_break_pos = 0;
+                }
 
-                    // get the part from the line beginning to the cursor
-                    var beginning = this.value.substring(previous_break_pos+1, sel_start);
+                // get the part from the line beginning to the cursor
+                var beginning = this.value.substring(previous_break_pos + 1, sel_start);
 
-                    if (beginning.match(/^(    )+$/)) {
-                        // line beginning is an even number of spaces, remove a tab width
-                        this.value = this.value.substr(0, sel_start - 4) + this.value.substr(sel_start);
-                        ev.preventDefault();
-                    }
+                if (beginning.match(/^(    )+$/)) {
+                    // line beginning is an even number of spaces, remove a tab width
+                    this.value = this.value.substr(0, sel_start - 4) + this.value.substr(sel_start);
+                    this.selectionStart = sel_start - 4;
+                    this.selectionEnd = this.selectionStart;
+                    ev.preventDefault();
                 }
             }
         } else if (ev.keyCode == 9) { // tab
@@ -50,12 +50,52 @@
                 // write back to input
                 this.value = this.value.substr(0, previous_break_pos) + indented + this.value.substr(sel_end);
             }
+        } else if (ev.keyCode == 13 && sel_len == 0) { // return
+            var beginning = this.value.substr(0, sel_start);
+            var last_break = beginning.lastIndexOf("\n") + 1;
+            var this_line = beginning.substr(last_break);
+            var indentation = "";
+
+            ev.preventDefault();
+
+            while (this_line.startsWith("    ")) {
+                indentation += "    ";
+                this_line = this_line.substr(4);
+            }
+
+            if (indentation != "") {
+                this.value = this.value.substr(0, sel_start) + "\n" + indentation + this.value.substr(sel_start);
+                this.selectionStart = sel_start + indentation.length + 1;
+                this.selectionEnd = this.selectionStart;
+            }
+        } else if (ev.keyCode == 36) { // home / pos1
+            var beginning = this.value.substr(0, sel_start);
+            var last_break = beginning.lastIndexOf("\n") + 1;
+            var this_line = beginning.substr(last_break);
+            var new_position = last_break;
+
+            ev.preventDefault();
+
+            while (this_line.startsWith("    ")) {
+                this_line = this_line.substr(4);
+                new_position += 4;
+            }
+
+            this.selectionStart = new_position;
+            this.selectionEnd = new_position;
+        }
+    }
+
+    function resizeEditor(textarea) {
+        var height = textarea.scrollHeight;
+        if (height > 0) {
+            textarea.style.height = height + "px";
         }
     }
 
     var elements = document.getElementsByClassName("markdown-editor");
 
-    for (element in elements) {
+    for (var element in elements) {
         if (!elements.hasOwnProperty(element)) {
             continue;
         }
@@ -63,5 +103,7 @@
         var editor = elements[element];
 
         editor.addEventListener("keydown", handle_keypress);
+        resizeEditor(editor);
     }
+
 </script>

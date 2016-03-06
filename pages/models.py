@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 class Page(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
     text = models.TextField()
 
     def __str__(self):
