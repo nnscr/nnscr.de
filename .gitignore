@@ -5,3 +5,4 @@
 /nnscr/static/jspm_packages
 /db.sqlite3
 __pycache__
+*.pyc
