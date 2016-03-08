@@ -56,14 +56,13 @@
             var this_line = beginning.substr(last_break);
             var indentation = "";
 
-            ev.preventDefault();
-
             while (this_line.startsWith("    ")) {
                 indentation += "    ";
                 this_line = this_line.substr(4);
             }
 
             if (indentation != "") {
+                ev.preventDefault();
                 this.value = this.value.substr(0, sel_start) + "\n" + indentation + this.value.substr(sel_start);
                 this.selectionStart = sel_start + indentation.length + 1;
                 this.selectionEnd = this.selectionStart;
